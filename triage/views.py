@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-from django.shortcuts import redirect, render
+
 
 def user_login(request):
     if request.user.is_authenticated:
-        return render(request, 'templates/home.html')
+        return render(request, 'home.html')
 
     if request.method == "POST":
         username = request.POST.get("name")
