@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from formtools.wizard.views import SessionWizardView
+from .forms import TriageAForm, TriageBForm
 
 
 def user_login(request):
@@ -37,3 +39,13 @@ def user_register(request):
 @login_required
 def home(request):
     return render(request, 'home.html')
+
+class TriageWizard(SessionWizardView):
+    template_name = "triage_form.html"
+    form_list = [TriageAForm, TriageBForm]
+    def done(self, form_list, **kwargs):
+        print(form.cleaned_data for form in form_list)
+
+        #return render(self.request, 'triage_web_app/done.html', {
+        #    'form_data': [form.cleaned_data for form in form_list],
+        #})
