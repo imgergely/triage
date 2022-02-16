@@ -1,13 +1,9 @@
 
 from django.forms import ModelForm
-from .models import TriageA, TriageB
+from .models import Triage
 
-class TriageAForm(ModelForm):
+class TriageForm(ModelForm):
     class Meta:
-        model = TriageA
-        fields = '__all__'
+        model = Triage
+        exclude = ('user',)
 
-class TriageBForm(ModelForm):
-    class Meta:
-        model = TriageB
-        fields = '__all__'
