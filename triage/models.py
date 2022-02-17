@@ -61,19 +61,18 @@ BOR = (
 class Triage(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    patientid = models.CharField(max_length=50, name="Beteg azonosító")
-    legut = models.CharField(max_length=1,choices=LEGUT_CHOICES,name="Légút")    
-    legzesszam = models.CharField(max_length=1,choices=LEGZESSZAM,name="Légzésszám")
-    legzesszam_LF = models.CharField(max_length=50, name="LF")
-    legzesi_munka = models.CharField(max_length=1,choices=LEGZESI_MUNKA,name="Légzési munka")
-    legzesi_munka_SPO = models.CharField(max_length=50, name="SpO2")
-    kohoges = models.CharField(max_length=1,choices=KOHOGES,name="Köhögés")
-    pulzus = models.CharField(max_length=1,choices=PULZUS,name="Pulzus")
-    pulzus_p = models.CharField(max_length=50, name="P")
-    bor = models.CharField(max_length=1,choices=BOR,name="Bőr")
-    pulzus_p = models.CharField(max_length=50, name="CRT")
-    pulzus_p = models.CharField(max_length=50, name="RR bo")
+    patientid = models.CharField("Beteg azonosító", max_length=50)
+    legut = models.CharField("Légút",max_length=1,choices=LEGUT_CHOICES)    
+    legzesszam = models.CharField("Légzésszám", max_length=1,choices=LEGZESSZAM)
+    legzesszam_LF = models.CharField("LF",max_length=50)
+    legzesi_munka = models.CharField("Légzési munka",max_length=1,choices=LEGZESI_MUNKA)
+    legzesi_munka_SPO = models.CharField("SpO2",max_length=50)
+    kohoges = models.CharField("Köhögés",max_length=1,choices=KOHOGES)
+    pulzus = models.CharField("Pulzus",max_length=1,choices=PULZUS)
+    pulzus_p = models.CharField("P",max_length=50)
+    bor = models.CharField("Bőr",max_length=1,choices=BOR)
+    pulzus_p = models.CharField("CRT",max_length=50)
+    pulzus_p = models.CharField("RR bo",max_length=50)
 
-    def __str__(self):
-        return self.patientid
+
 
