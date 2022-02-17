@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import TriageForm
+from .models import Triage
 
 
 def user_login(request):
@@ -37,7 +38,8 @@ def user_register(request):
 
 @login_required
 def home(request):
-    return render(request, 'home.html')
+    triage = {"triage": Triage.objects.all()}
+    return render(request, 'home.html', triage)
 
 @login_required
 def triage(request):
