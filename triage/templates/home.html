@@ -1,7 +1,6 @@
 <title> Home </title>
 {%extends "base.html" %}
-{% block content %}   
-<br>
+{% block content %}
 
 <div class="row">
     <div class="col-md">
@@ -11,20 +10,29 @@
         <div class="card card-body">
             <table class="table">
                 <tr>
+                    
                     <th>Patient ID</th>
                     <th>Triage Created</th>
-                </tr>
+                    <th>Actions</th>
 
-                {% for i in triage %}
-                    <tr>
-                        <td>{{i.patientid}}</td>
-                    </tr>
-                {% endfor %}
+                </tr>
                 
+                    {% for i in triage %}
+                <tr>
+
+                    <td>{{i.patientid}}</td>
+                    <td></td>
+                    <td><button type="button" class="btn btn-primary btn-info">View</button>
+                        <button type="button" class="btn btn-primary btn-info">Update</button>
+                        <button type="button" class="btn btn-primary btn-danger">Delete</button>
+                    </td>
+                </tr>
+                    {% endfor %}
+               
+
             </table>
         </div>
     </div>
-    
+
 </div>
 {% endblock%}
-    

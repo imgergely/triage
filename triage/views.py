@@ -46,7 +46,8 @@ def triage(request):
     if request.method == 'POST':
         form = TriageForm(request.POST)
         if form.is_valid():
-            return redirect('triage_form.html')
+            
+            return redirect('/triage_form/')
     else:
         form = TriageForm()
 
