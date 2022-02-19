@@ -59,7 +59,7 @@ BOR = (
     )
 
 class Triage(models.Model):
-    
+    created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     patientid = models.CharField("Beteg azonosító", max_length=50)
     legut = models.CharField("Légút",max_length=1,choices=LEGUT_CHOICES)    
@@ -73,6 +73,10 @@ class Triage(models.Model):
     bor = models.CharField("Bőr",max_length=1,choices=BOR)
     pulzus_p = models.CharField("CRT",max_length=50)
     pulzus_p = models.CharField("RR bo",max_length=50)
+
+    def get_fields(self):
+        
+        return [(field.verbose_name, field.value_to_string(self)) for field in Triage._meta.fields]
 
 
 

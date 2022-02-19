@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import TriageForm
 from .models import Triage
-
+from django.views.generic import DetailView
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -52,3 +52,7 @@ def triage(request):
         form = TriageForm()
 
     return render(request, 'triage_form.html' , {'form': form})
+
+class TriageDetail(DetailView): 
+    model = Triage
+    template_name = 'triage_detail.html'

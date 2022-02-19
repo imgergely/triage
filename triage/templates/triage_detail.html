@@ -1,0 +1,15 @@
+<title> Home </title>
+{%extends "base.html" %}
+{% block content %}
+<table class="table">
+    {% for name, value in object.get_fields %}
+    {% if value %}
+    <th>{{ name }}</th>
+    <tr>
+        <td>{{ value }}</td>
+        
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% endblock%}

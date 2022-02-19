@@ -21,8 +21,8 @@
                 <tr>
 
                     <td>{{i.patientid}}</td>
-                    <td></td>
-                    <td><button type="button" class="btn btn-primary btn-info">View</button>
+                    <td>{{i.created}}</td>
+                    <td><a href="{% url 'triage_detail' i.id %}"><button type="button" class="btn btn-primary btn-info">View</button></a>
                         <button type="button" class="btn btn-primary btn-info">Update</button>
                         <button type="button" class="btn btn-primary btn-danger">Delete</button>
                     </td>
