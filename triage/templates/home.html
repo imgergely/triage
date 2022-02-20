@@ -21,9 +21,9 @@
                 <tr>
 
                     <td class="bg-warning">{{i.patientid}}</td>
-                    <td>{{i.created}}</td>
+                    <td>{{i.created|date:"H:i"}}</td>
                     <td><a href="{% url 'triage_detail' i.id %}"><button type="button" class="btn btn-primary btn-info">View</button></a>
-                        <button type="button" class="btn btn-primary btn-danger">Delete</button>
+                        <a href="{% url 'triage_delete' i.id %}"><button type="button" class="btn btn-primary btn-danger">Delete</button></a>
                     </td>
                 </tr>
                     {% endfor %}

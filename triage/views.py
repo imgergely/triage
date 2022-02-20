@@ -3,11 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import TriageForm
 from .models import Triage
-from django.views.generic import DetailView
+from django.views.generic import DetailView, DeleteView
 
 def user_login(request):
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        triage = {"triage": Triage.objects.all()}
+        return render(request, 'home.html', triage)
 
     if request.method == "POST":
         username = request.POST.get("name")
@@ -20,7 +21,8 @@ def user_login(request):
             return render(request, 'login.html',context)
 
         login(request, user)
-        return render(request, 'home.html')
+        triage = {"triage": Triage.objects.all()}
+        return render(request, 'home.html', triage)
 
     return render(request, 'login.html')
 
@@ -55,3 +57,8 @@ def triage(request):
 class TriageDetail(DetailView): 
     model = Triage
     template_name = 'triage_detail.html'
+
+class TriageDelete(DeleteView):
+    model = Triage
+    template_name = 'triage_delete.html'
+    success_url ="/"
