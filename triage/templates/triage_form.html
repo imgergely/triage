@@ -17,9 +17,8 @@
 <div class="d-flex justify-content-center">
 <form action="" method="post">{% csrf_token %}
         {{ form|crispy }}
-    <button type="submit">
-        Submit
-    </button>
+    <button type="submit" class="btn btn-primary btn-danger">Submit</button>
+    <a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info" href="{% url 'app-home' %}">Back</button></a>
 </form>
 </div>
 {% endblock %}

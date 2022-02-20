@@ -32,9 +32,6 @@ def user_logout(request):
         return redirect("/")
     return render(request, 'logout.html')
 
-@login_required
-def user_register(request):
-    return render(request, 'register.html',{})
 
 @login_required
 def home(request):
@@ -46,8 +43,10 @@ def triage(request):
     if request.method == 'POST':
         form = TriageForm(request.POST)
         if form.is_valid():
-            
-            return redirect('/triage_form/')
+            triage = form.save(commit=False)
+            triage.user = request.user
+            triage.save()
+            return redirect('/')
     else:
         form = TriageForm()
 

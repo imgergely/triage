@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from operator import methodcaller
 
 LEGUT_CHOICES = (
         ('1', 'Átjárható',),
@@ -75,8 +76,14 @@ class Triage(models.Model):
     pulzus_p = models.CharField("RR bo",max_length=50)
 
     def get_fields(self):
-        
-        return [(field.verbose_name, field.value_to_string(self)) for field in Triage._meta.fields]
-
+        collectorlist = []
+        for field in Triage._meta.fields:
+            try:
+                collector = field.verbose_name, methodcaller('get_{}_display'.format(field.name))(self)
+                collectorlist.append(collector)
+            except:
+                collector= field.verbose_name, field.value_to_string(self)
+                collectorlist.append(collector)
+        return collectorlist
 
 
