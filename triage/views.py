@@ -7,8 +7,8 @@ from django.views.generic import DetailView, DeleteView
 
 def user_login(request):
     if request.user.is_authenticated:
-        triage = {"triage": Triage.objects.all()}
-        return render(request, 'home.html', triage)
+        
+        return render(request, 'home.html', get_triage_data())
 
     if request.method == "POST":
         username = request.POST.get("name")
@@ -21,11 +21,14 @@ def user_login(request):
             return render(request, 'login.html',context)
 
         login(request, user)
-        triage = {"triage": Triage.objects.all()}
-        return render(request, 'home.html', triage)
+        return render(request, 'home.html', get_triage_data())
 
     return render(request, 'login.html')
 
+
+def get_triage_data():
+    triage = {"triage": Triage.objects.all()}
+    return triage
 
 @login_required
 def user_logout(request):
@@ -37,8 +40,7 @@ def user_logout(request):
 
 @login_required
 def home(request):
-    triage = {"triage": Triage.objects.all()}
-    return render(request, 'home.html', triage)
+    return render(request, 'home.html', get_triage_data())
 
 @login_required
 def triage(request):

@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from operator import methodcaller
 
+
 LEGUT_CHOICES = (
         ('1', 'Átjárható',),
         ('2', 'Elzáródott',),
@@ -72,18 +73,17 @@ class Triage(models.Model):
     pulzus = models.CharField("Pulzus",max_length=1,choices=PULZUS)
     pulzus_p = models.CharField("P",max_length=50)
     bor = models.CharField("Bőr",max_length=1,choices=BOR)
-    pulzus_p = models.CharField("CRT",max_length=50)
-    pulzus_p = models.CharField("RR bo",max_length=50)
+    crt = models.CharField("CRT",max_length=50) 
+    rrbo = models.CharField("RR bo",max_length=50)
 
     def get_fields(self):
         collectorlist = []
         for field in Triage._meta.fields:
-            try:
-                collector = field.verbose_name, methodcaller('get_{}_display'.format(field.name))(self)
-                collectorlist.append(collector)
-            except:
-                collector= field.verbose_name, field.value_to_string(self)
-                collectorlist.append(collector)
+            if field.name not in ['id', 'created', 'user']:
+                try:
+                    collector = field.verbose_name, methodcaller('get_{}_display'.format(field.name))(self)
+                    collectorlist.append(collector)
+                except:
+                    collector= field.verbose_name, field.value_to_string(self)
+                    collectorlist.append(collector)
         return collectorlist
-
-
