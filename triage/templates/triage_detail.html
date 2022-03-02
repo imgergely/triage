@@ -3,31 +3,28 @@
 {% block content %}
 
 
-
-<div class="card card-body">
     {% for name, value in object.get_fields %}
     {% if name == "Beteg azonosító" %}
-    <h5>Beteg azonosító: {{ value }}</h5>
-    {% else %}
-</div>
-
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col col-lg-2">
-            {{ name }}
-        </div>
-        <div class="col col-lg-2">
-            {{ value }}
-        </div>
+    <div class="card card-body align-items-center d-flex justify-content-center">
+        <h3>Beteg azonosító: {{ value }}</h3>
     </div>
-</div>
-
     {% endif %}
     {% endfor %}
-
-<div class="d-flex justify-content-center">
-    <a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info">Back</button></a>
-</div>
+    <table class="table table-striped table-responsive d-flex justify-content-center">
+    {% for name, value in object.get_fields %}
+    {% if name != "Beteg azonosító" %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ value }}</td>
+            </tr>
+     
+    
+    {% endif %}
+    {% endfor %}
+    <tr>
+        <td><a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info">Back</button></a></td>
+    </tr>
+    </table>
 
 
 

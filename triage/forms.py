@@ -40,4 +40,5 @@ class TriageForm(ModelForm):
                                 css_class='form-row'
                                 ),),
             ButtonHolder(
-                Submit('submit', 'Submit', css_class='button white'),),)
+                Submit('submit', 'Submit', css_class='button white'),
+                Reset('reset', 'Reset Form', css_class='button white'),),)
