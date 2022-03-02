@@ -39,6 +39,11 @@ class TriageForm(ModelForm):
                                 Column('rrbo', css_class='form-group col-md-6 mb-0'),
                                 css_class='form-row'
                                 ),),
+            Fieldset('',   
+                            Row(
+                                Column('triage_category', css_class='form-group col-md-6 mb-0'),
+                                css_class='form-row'
+                                ),),
             ButtonHolder(
                 Submit('submit', 'Submit', css_class='button white'),
                 Reset('reset', 'Reset Form', css_class='button white'),),)

@@ -60,6 +60,14 @@ BOR = (
         ('8', 'Kiütéses',),
     )
 
+TRIAGE_CATEGORY = (
+        ('1', '1 - Azonnali - P',),
+        ('2', '2 - 15 perc - S',),
+        ('3', '3 - 30 perc - Z',),
+        ('4', '4 - 60 perc - K',),
+        ('5', '5 - 120 perc - Sz',),
+    )
+
 class Triage(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -75,6 +83,8 @@ class Triage(models.Model):
     bor = models.CharField("Bőr",max_length=1,choices=BOR)
     crt = models.CharField("CRT",max_length=50) 
     rrbo = models.CharField("RR bo",max_length=50)
+    treatment = models.BooleanField("Kezelés alatt", default=False)
+    triage_category = models.CharField("Triage Kategória",max_length=1,choices=TRIAGE_CATEGORY)
 
     def get_fields(self):
         collectorlist = []
