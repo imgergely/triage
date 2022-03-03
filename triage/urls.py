@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('', views.user_login, name='app-login'),
-    path('home/', views.home, name='app-home'),
+    path('', views.home, name='app-home'),
+    path('under_treatment/', views.get_under_treatment, name='under_treatment'),
     path('<int:pk>/', login_required(TriageDetail.as_view()), name='triage_detail'),
     path('<int:pk>/triage_delete', login_required(TriageDelete.as_view()), name='triage_delete'),
     path('triage_form/', views.triage, name='app-new_triage_form'),
