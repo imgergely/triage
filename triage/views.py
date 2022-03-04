@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from .forms import TriageForm
 from .models import Triage
-from django.views.generic import DetailView, DeleteView
+from django.views.generic import DetailView
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -71,11 +71,3 @@ def user_logout(request):
         return redirect("/")
     return render(request, 'logout.html')
 
-
-
-
-
-class TriageDelete(DeleteView):
-    model = Triage
-    template_name = 'triage_delete.html'
-    success_url ="/"

@@ -11,29 +11,41 @@
         <title>Triage App</title>
     {% endif %}   
     
-    {% block head %}{% endblock%}
+
   </head>
   
   <body>
     <nav class="navbar navbar-dark bg-dark">
       <ul class="nav nav-pills nav-fill">
         <li class="nav-item">
-          <a style="color:rgb(252, 252, 252)" class="nav-link" href="{% url 'app-home' %}">Home</a>
+      
+          <button class="btn btn-outline-light" hx-get="{% url 'app-home' %}" hx-swap="innerHTML" hx-target="#container">Home</button>
         </li>
         <li class="nav-item">
-          <a style="color:rgb(252, 252, 252)" class="nav-link " href="{% url 'app-new_triage_form' %}">New Triage</a>
+         
+          <button class="btn btn-outline-light" hx-get="{% url 'under_treatment' %}" hx-swap="innerHTML" hx-target="#container">Under Treatment</button>
         </li>
         <li class="nav-item">
-          <a style="color:rgb(252, 252, 252)" class="nav-link" href="{% url 'app-logout' %}">Logout</a>
+          
+          <button class="btn btn-outline-light" hx-get="{% url 'app-new_triage_form' %}" hx-swap="innerHTML" hx-target="#container">New Triage</button>
+        </li>
+        <li class="nav-item">
+          
+          <button class="btn btn-outline-light" hx-get="{% url 'app-logout' %}" hx-swap="innerHTML" hx-target="#container">Logout</button>
         </li>
       </ul>
     </nav>
 
     
     
+    <div id="container" hx-swap-oob="true">
+      <!--<div  hx-get="{% url 'app-home' %}" hx-trigger="every 2s"></div>-->
+  
+      {% block content %}
+      {% endblock %}
+    </div>
 
-
-    {% block content %}{% endblock%}
+   
 
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
     <script>document.body.addEventListener('htmx:configRequest', (event) => {event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';})</script>

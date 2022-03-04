@@ -1,4 +1,5 @@
 <title> Home </title>
+
 {%extends "base.html" %}
 {% block content %}
 
@@ -19,31 +20,29 @@
                     {% for i in triage %}
                 <tr>   
                     {% if i.triage_category == '1' %}
-                    <td style="text-align: center; vertical-align: middle; background-color: rgba(255, 0, 0, 0.87)">{{i.patientid}}</td>
+                    <td style="text-align: center; vertical-align: middle; background-color: rgba(255, 0, 0, 0.699)">{{i.patientid}}</td>
                     {% elif i.triage_category == '2' %}
-                    <td style="text-align: center; vertical-align: middle; background-color: rgba(255, 115, 0, 0.849)">{{i.patientid}}</td>
+                    <td style="text-align: center; vertical-align: middle; background-color: rgba(255, 115, 0, 0.884)">{{i.patientid}}</td>
                     {% elif i.triage_category == '3' %}
-                    <td style="text-align: center; vertical-align: middle; background-color: rgba(255, 251, 0, 0.822)">{{i.patientid}}</td>
+                    <td style="text-align: center; vertical-align: middle; background-color: rgba(251, 255, 0, 0.822)">{{i.patientid}}</td>
                     {% elif i.triage_category == '4' %}
-                    <td style="text-align: center; vertical-align: middle; background-color: rgba(43, 255, 0, 0.781)">{{i.patientid}}</td>
+                    <td style="text-align: center; vertical-align: middle; background-color: rgba(43, 255, 0, 0.637)">{{i.patientid}}</td>
                     {% elif i.triage_category == '5' %}
-                    <td style="text-align: center; vertical-align: middle; background-color: rgba(25, 0, 255, 0.781)">{{i.patientid}}</td>
+                    <td style="text-align: center; vertical-align: middle; background-color: rgba(0, 140, 255, 0.822)">{{i.patientid}}</td>
 
                     {% endif %}
 
                     <td style="text-align: center; vertical-align: middle;">{{i.created|date:"H:i l"}}</td>
-                    <td><a href="{% url 'triage_detail' i.id %}"><button type="button" class="btn btn-primary btn-info">View</button></a>
-                        <a href="{% url 'triage_delete' i.id %}"><button type="button" class="btn btn-primary btn-success">Start Treatment</button></a>
+                    <td><button class="btn btn-outline-info" hx-get="{% url 'triage_detail' i.id %}" hx-swap="innerHTML" hx-target="#container">View</button>
+                        <button class="btn btn-outline-success" hx-get="{% url 'triage_detail' i.id  %}" hx-swap="innerHTML" hx-target="#container">Start Treatment</button>
                     </td>
                 </tr>
                     {% endfor %}
-               
-
+            
             </table>
         </div>
 
-        <div class="d-flex justify-content-center" id="here">
-            <button class="btn btn-primary btn-info" hx-get="{% url 'under_treatment' %}" hx-swap="outerHTML" hx-target="#here">Show Under Treatment</button> </td>     
-        </div>
 
+                 
+        
 {% endblock%}
