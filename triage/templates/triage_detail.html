@@ -1,7 +1,5 @@
 <title> Triage Detail </title>
 
-<!--{%extends "base.html" %}-->
-<!--{% block content %}-->
 
 
     {% for name, value in object.get_fields %}
@@ -23,9 +21,6 @@
     {% endif %}
     {% endfor %}
     <tr>
-        <td><a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info">Back</button></a></td>
+        <td><button class="btn btn-info" hx-get="{% url 'app-home' %}" hx-swap="innerHTML" hx-target="#container">Home</button></td>
     </tr>
     </table>
-
-
-<!--{% endblock%}-->

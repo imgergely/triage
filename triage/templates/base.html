@@ -36,14 +36,16 @@
       </ul>
     </nav>
 
-    
-    
-    <div id="container" hx-swap-oob="true">
-      <!--<div  hx-get="{% url 'app-home' %}" hx-trigger="every 2s"></div>-->
-  
-      {% block content %}
-      {% endblock %}
+    <div id="login-container" hx-swap-oob="true">
+    {% block login %}
+    {% endblock %}
     </div>
+
+    <div id="container" hx-swap-oob="true">
+    {% block content %}
+    {% endblock %}
+    </div>
+    
 
    
 

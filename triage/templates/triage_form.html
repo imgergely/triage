@@ -1,24 +1,15 @@
 <title> New Triage </title>
 
-<!--{%extends "base.html" %}-->
-
-
 
 {% load crispy_forms_tags %}
 
 
-
-<!--{% block content %}-->
-
-
-
 <div class="d-flex justify-content-center">
-    <form hx-post="{% url 'app-new_triage_form' %}">
+    <form method="POST" hx-post="{% url 'app-new_triage_form' %}">
         {% crispy form %}
     </form>
 </div>
 <div class="d-flex justify-content-center">
-    <a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info">Back</button></a>
+    <button class="btn btn-info" hx-get="{% url 'app-home' %}" hx-swap="innerHTML" hx-target="#container">Home</button>
 </div>
 
-<!--{% endblock%}-->

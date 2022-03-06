@@ -8,7 +8,7 @@ from django.views.generic import DetailView
 def user_login(request):
     if request.user.is_authenticated:
         
-        return render(request, 'home.html', get_triage())
+        return home(request)
 
     if request.method == "POST":
         username = request.POST.get("name")
@@ -21,21 +21,17 @@ def user_login(request):
             return render(request, 'login.html',context)
 
         login(request, user)
-        return render(request, 'home.html', get_triage())
+
+        return home(request)
+
 
     return render(request, 'login.html')
 
 
 @login_required
 def home(request):
-    return render(request, 'home.html', get_triage())
-
-def get_triage():
-    try:
-        triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
-    except:
-        triage = None
-    return triage
+    triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
+    return render(request, 'home.html', triage)
 
 
 @login_required
@@ -58,16 +54,21 @@ class TriageDetail(DetailView):
 
 @login_required
 def get_under_treatment(request):
-    try:
-        under_treatment = {"under_treatment": Triage.objects.filter(treatment=True)}
-    except:
-        under_treatment = None
+    under_treatment = {"under_treatment": Triage.objects.filter(treatment=True).order_by("created")}
     return render(request, 'under_treatment.html', under_treatment)
+
+@login_required
+def set_under_treatment(request,id):
+    if request.method == 'POST':
+        print("hali")
+        obj =Triage.objects.filter(pk=id).update(treatment=True)
+        obj.save()
+        return redirect('/')
 
 @login_required
 def user_logout(request):
     if request.method == "POST":
         logout(request)
-        return redirect("/")
+        return render(request, 'login.html')
     return render(request, 'logout.html')
 
