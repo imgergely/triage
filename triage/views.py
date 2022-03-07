@@ -58,11 +58,9 @@ def get_under_treatment(request):
     return render(request, 'under_treatment.html', under_treatment)
 
 @login_required
-def set_under_treatment(request,id):
-    if request.method == 'POST':
-        print("hali")
-        obj =Triage.objects.filter(pk=id).update(treatment=True)
-        obj.save()
+def set_under_treatment(request,pk):
+    if request.method == 'GET':
+        Triage.objects.filter(pk=pk).update(treatment=True)
         return redirect('/')
 
 @login_required

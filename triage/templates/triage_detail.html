@@ -20,7 +20,16 @@
     
     {% endif %}
     {% endfor %}
+    
     <tr>
+        {% for name, value in object.get_fields %}
+        {% if name == "Kezelés alatt" and value != 'True' %}
         <td><button class="btn btn-info" hx-get="{% url 'app-home' %}" hx-swap="innerHTML" hx-target="#container">Home</button></td>
+        {% endif %}
+        {% if name == "Kezelés alatt" and value == 'True' %}
+        <td><button class="btn btn-info" hx-get="{% url 'under_treatment' %}" hx-swap="innerHTML" hx-target="#container">Back</button></td>
+        {% endif %}
+        {% endfor %}
+        
     </tr>
     </table>
