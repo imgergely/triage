@@ -27,11 +27,19 @@ def user_login(request):
 
     return render(request, 'login.html')
 
-
+# modified home view for different sort requests
 @login_required
 def home(request):
-    triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
-    return render(request, 'home.html', triage)
+    try:
+        sort = request.GET['sort_by']
+        if sort == "default":
+            triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
+        elif sort == "time":
+            triage = {"triage": Triage.objects.filter(treatment=False).order_by("created", "triage_category")}
+        return render(request, 'home.html', triage)
+    except:
+        triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
+        return render(request, 'home.html', triage)
 
 
 @login_required

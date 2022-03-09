@@ -46,8 +46,14 @@
     {% endblock %}
     </div>
     
-
-   
+  <!--
+    <form hx-get="{% url 'app-home' %}" hx-trigger="change" hx-target="#container">
+      <select name="sort_by" class="form-control" style="text-align: center; vertical-align: middle;">
+          <option value="default">Default</option>
+          <option value="time">Time Created</option>
+      </select>
+    </form>
+  -->
 
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
     <script>document.body.addEventListener('htmx:configRequest', (event) => {event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';})</script>
