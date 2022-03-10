@@ -1,5 +1,6 @@
 <title> Under Treatment </title>
 
+<div id="loader" hx-get="{% url 'under_treatment' %}" hx-trigger="every 10s">
 
 <div class="card card-body align-items-center d-flex justify-content-center">
     <h3>Under Treatment</h3>
@@ -34,3 +35,5 @@
             </td>
         </tr>
             {% endfor %}
+
+</div>

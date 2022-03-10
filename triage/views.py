@@ -36,7 +36,7 @@ def home(request):
             triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
         elif sort == "time":
             triage = {"triage": Triage.objects.filter(treatment=False).order_by("created", "triage_category")}
-        return render(request, 'home.html', triage)
+        return render(request, 'home_sorted.html', triage)
     except:
         triage = {"triage": Triage.objects.filter(treatment=False).order_by("triage_category", "created")}
         return render(request, 'home.html', triage)
