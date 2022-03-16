@@ -38,7 +38,7 @@
 
                     {% endif %}
 
-                    <td style="text-align: center; vertical-align: middle;">{{i.created|date:"H:i l"}}</td>
+                    <td style="text-align: center; vertical-align: middle;">{{i.created|date:"H:i d,F"}}</td>
                     <td><button class="btn btn-outline-info" hx-get="{% url 'triage_detail' i.id %}" hx-swap="innerHTML" hx-target="#container">View</button>
                         <button class="btn btn-outline-success" hx-get="{% url 'set_under_treatment' i.id %}" hx-confirm="Do you want to start the treatment?">Start Treatment</button>
                     </td>

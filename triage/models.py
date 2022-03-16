@@ -70,7 +70,7 @@ TRIAGE_CATEGORY = (
 
 class Triage(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True) #user model field is used to represent the person treating the patient
     patientid = models.CharField("Beteg azonosító", max_length=50, unique=True)
     legut = models.CharField("Légút",max_length=1,choices=LEGUT_CHOICES)    
     legzesszam = models.CharField("Légzésszám", max_length=1,choices=LEGZESSZAM)
@@ -89,7 +89,7 @@ class Triage(models.Model):
     def get_fields(self):
         collectorlist = []
         for field in Triage._meta.fields:
-            if field.name not in ['id', 'created', 'user']:
+            if field.name not in ['id', 'created','user']:
                 try:
                     collector = field.verbose_name, methodcaller('get_{}_display'.format(field.name))(self)
                     collectorlist.append(collector)

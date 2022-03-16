@@ -49,7 +49,7 @@ def triage(request):
         if form.is_valid():
             triage = form.save(commit=False)
             triage.user = request.user
-            triage.save()
+            form.save()
             return redirect('/')
     else:
         form = TriageForm()
@@ -68,7 +68,7 @@ def get_under_treatment(request):
 @login_required
 def set_under_treatment(request,pk):
     if request.method == 'GET':
-        Triage.objects.filter(pk=pk).update(treatment=True)
+        Triage.objects.filter(pk=pk).update(treatment=True, user=request.user)
         return redirect('/')
 
 @login_required

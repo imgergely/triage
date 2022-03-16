@@ -1,4 +1,4 @@
-
+from crispy_forms.bootstrap import Tab, TabHolder
 from django.forms import ModelForm
 from .models import Triage
 from crispy_forms.helper import FormHelper

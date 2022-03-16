@@ -4,7 +4,6 @@
     <form method="POST" hx-post="{% url 'app-logout' %}" hx-target="#login-container" hx-confirm="Are you sure you want to logout?"> 
         <div class="form-group m-0">
             <button type="submit" class="btn btn-primary btn-danger">Logout</button>
-            <a href="{% url 'app-home' %}"><button type="button" class="btn btn-primary btn-info">Back</button></a>
         </div>
     </form>
 </div>
