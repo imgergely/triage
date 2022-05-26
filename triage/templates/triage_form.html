@@ -13,3 +13,15 @@
     <button class="btn btn-info" hx-get="{% url 'app-home' %}" hx-swap="innerHTML" hx-target="#container">Home</button>
 </div>
 
+<script>
+    var legzes = document.getElementById('id_legzesszam')
+    legzes.addEventListener("change", function() {
+        if (legzes.options[legzes.selectedIndex].value == "1" || legzes.options[legzes.selectedIndex].value == "" ) {
+            document.getElementById('id_kohoges').style.display = 'none';
+            document.getElementById('id_kohoges').value = ""
+        } 
+        else {
+            document.getElementById('id_kohoges').style.display = 'inline-block';
+        }
+    });
+</script>

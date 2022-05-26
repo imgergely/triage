@@ -72,7 +72,7 @@ class Triage(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True) #user model field is used to represent the person treating the patient
     patientid = models.CharField("Beteg azonosító", max_length=50, unique=True)
-    legut = models.CharField("Légút",max_length=1,choices=LEGUT_CHOICES)    
+    legut = models.CharField("Légút",max_length=100)    
     legzesszam = models.CharField("Légzésszám", max_length=1,choices=LEGZESSZAM)
     legzesszam_LF = models.CharField("LF",max_length=50)
     legzesi_munka = models.CharField("Légzési munka",max_length=1,choices=LEGZESI_MUNKA)

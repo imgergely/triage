@@ -3,14 +3,33 @@ from django.forms import ModelForm
 from .models import Triage
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import *
+from django import forms
+
+
+LEGUT_CHOICES = (
+        ('1', 'Átjárható',),
+        ('2', 'Elzáródott',),
+        ('3', 'Stidoros',),
+        ('4', 'Zörgő, szörcsögő',),
+        ('5', 'Sípoló',),
+        ('6', 'Horkoló',),
+    )
 
 class TriageForm(ModelForm):
     class Meta:
         model = Triage
         exclude = ('user',)
 
+    def clean_region(self):
+        if len(self.cleaned_data['legut']) > 1:
+            raise forms.ValidationError('Select only 1 option.')
+        return self.cleaned_data['legut']
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['legut']= forms.MultipleChoiceField(choices=LEGUT_CHOICES, widget=forms.CheckboxSelectMultiple())
+        self.fields['kohoges'].widget.attrs.update({'style': 'display: none'})
+
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Fieldset('', 'patientid'),
@@ -47,3 +66,5 @@ class TriageForm(ModelForm):
             ButtonHolder(
                 Submit('submit', 'Submit', css_class='button white'),
                 Reset('reset', 'Reset Form', css_class='button white'),),)
+
+                
